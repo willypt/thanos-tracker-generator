@@ -1,6 +1,7 @@
 import React, {useMemo, useState, useCallback} from 'react';
 import camelCase from 'lodash/camelCase';
 import { js } from 'js-beautify'
+import Head from "next/head";
 
 const GeneratorPage = () => {
   const [response, setResponse] = useState('');
@@ -73,23 +74,32 @@ const GeneratorPage = () => {
     return []
   }, [response])
 
-  return <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-gray-700 bg-blue-500 text-sm">
-    <div className="w-full flex items-center justify-between h-14 text-white z-10 px-3 text-lg">
-      <strong>Thanos Tracker File Generator</strong>
-    </div>
-    <div className="flex flex-col flex-1 p-3">
-      <textarea value={response} className="rounded-lg p-4 h-60 shadow-xl focus-within:shadow-2xl outline-none" onChange={e => setResponse(e.target.value)} />
-      <div className="flex mt-3 mb-3 flex-col md:flex-row ">
-        <button className="mr-2 h-9 bg-green-300 rounded-lg p-2 shadow-md w-full font-extrabold text-gray-700 mb-2 md:m-0" onClick={onClickGenerate}>Generate File</button>
-        <select value={selectedOption} className="w-full md:w-max md:ml-2 rounded-lg p-2" onChange={e => setSelectedOption(e.target.value)}>
-          <option value="">-- All Pages --</option>
-          {selections.map(v => <option key={v} value={v}>{v}</option>)}
+  return (
+    <div>
+      <Head>
+        <title>Thanos Tracker File Generator</title>
+        <meta name="description" content="Tracker File Generator. Crafted with ♥️ by @willypt" />
+      </Head>
 
-        </select>
+      <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-gray-700 bg-blue-500 text-sm">
+        <div className="w-full flex items-center justify-between h-14 text-white z-10 px-3 text-lg">
+          <strong>Thanos Tracker File Generator</strong>
+        </div>
+        <div className="flex flex-col flex-1 p-3">
+          <textarea value={response} className="rounded-lg p-4 h-60 shadow-xl focus-within:shadow-2xl outline-none" onChange={e => setResponse(e.target.value)} />
+          <div className="flex mt-3 mb-3 flex-col md:flex-row ">
+            <button className="mr-2 h-9 bg-green-300 rounded-lg p-2 shadow-md w-full font-extrabold text-gray-700 mb-2 md:m-0" onClick={onClickGenerate}>Generate File</button>
+            <select value={selectedOption} className="w-full md:w-max md:ml-2 rounded-lg p-2" onChange={e => setSelectedOption(e.target.value)}>
+              <option value="">-- All Pages --</option>
+              {selections.map(v => <option key={v} value={v}>{v}</option>)}
+
+            </select>
+          </div>
+          <textarea value={str} readOnly className="rounded-lg p-4 h-60 shadow-xl focus-within:shadow-2xl outline-none flex-1" />
+        </div>
       </div>
-      <textarea value={str} readOnly className="rounded-lg p-4 h-60 shadow-xl focus-within:shadow-2xl outline-none flex-1" />
     </div>
-  </div>
+  )
 }
 
 export default GeneratorPage
