@@ -41,7 +41,7 @@ const GeneratorPage = () => {
         userId: undefined
       });
 
-      return `const tracker_${camelCase(o.DtlRequestProduct.screen_name)}_${camelCase(o.DtlRequestProduct.user_action)} = () => { pushTracker(${JSON.stringify(obj)}); };\n\n`
+      return `export const tracker_${camelCase(o.DtlRequestProduct.screen_name)}_${camelCase(o.DtlRequestProduct.user_action)} = () => { pushTracker(${JSON.stringify(obj)}); };\n\n`
     }).join('') || ''}
   `, {
       "indent_size": "2",
