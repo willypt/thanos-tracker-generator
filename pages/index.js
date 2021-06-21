@@ -2,6 +2,7 @@ import React, {useMemo, useState, useCallback} from 'react';
 import camelCase from 'lodash/camelCase';
 import { js } from 'js-beautify'
 import Head from "next/head";
+import '../styles/globals.css';
 
 const GeneratorPage = () => {
   const [response, setResponse] = useState('');
