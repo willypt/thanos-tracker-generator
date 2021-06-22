@@ -35,7 +35,7 @@ const GeneratorPage = () => {
     };\n
     ${approvedList?.map(o => {
       const obj = ({
-        ...JSON.parse(o.DtlRequestTracker.result_v5),
+        ...JSON.parse(o.DtlRequestTracker.result),
         businessUnit: undefined,
         currentSite: undefined,
         userId: undefined
